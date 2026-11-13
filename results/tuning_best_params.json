@@ -1,0 +1,52 @@
+{
+  "classification": {
+    "LightGBM": {
+      "params": {
+        "learning_rate": 0.023359653117533394,
+        "num_leaves": 15,
+        "min_child_samples": 170,
+        "subsample": 0.904138259698652,
+        "colsample_bytree": 0.395243911382672,
+        "reg_lambda": 3.884690235103172
+      },
+      "n_estimators": 258,
+      "val_score": 0.7170613352675704,
+      "n_trials": 15
+    },
+    "CatBoost": {
+      "params": {
+        "learning_rate": 0.1359792484318226,
+        "depth": 5,
+        "l2_leaf_reg": 1.8559980846490576
+      },
+      "n_estimators": 72,
+      "val_score": 0.7164566862994218,
+      "n_trials": 7
+    }
+  },
+  "regression": {
+    "LightGBM": {
+      "params": {
+        "learning_rate": 0.09053051119765948,
+        "num_leaves": 16,
+        "min_child_samples": 158,
+        "subsample": 0.7171268828476288,
+        "colsample_bytree": 0.6351147083839692,
+        "reg_lambda": 32.68615106595173
+      },
+      "n_estimators": 45,
+      "val_score": 0.028763666092842977,
+      "n_trials": 15
+    },
+    "CatBoost": {
+      "params": {
+        "learning_rate": 0.1359792484318226,
+        "depth": 5,
+        "l2_leaf_reg": 1.8559980846490576
+      },
+      "n_estimators": 96,
+      "val_score": 0.02908897370001351,
+      "n_trials": 7
+    }
+  }
+}

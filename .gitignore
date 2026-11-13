@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.DS_Store
+# large artefacts / datasets
+data/*.csv
+data/*.csv.gz
+models/*.joblib
+.venv/ 
+.pytest_cache/ 
+__pycache__/

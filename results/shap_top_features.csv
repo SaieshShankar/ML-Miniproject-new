@@ -1,0 +1,33 @@
+feature,mean_abs_shap,label
+int_rate,0.27801066449175427,interest rate
+term,0.23227260834891658,loan term
+grade,0.15368314026397872,LendingClub grade
+dti,0.11192986101897852,debt-to-income ratio
+home_ownership,0.09232881810893882,home ownership
+annual_inc,0.08372554988161696,annual income
+fico_range_low,0.0653621143276759,FICO score
+fico_range_high,0.0492796730805624,FICO score (upper)
+open_acc,0.04800178687781126,open credit lines
+revol_bal,0.045860142088839644,revolving balance
+earliest_cr_line,0.04227743060059255,length of credit history
+inq_last_6mths,0.03534321436457964,recent credit enquiries
+funded_amnt,0.031933821383033405,funded amount
+loan_amnt,0.028009983522909652,loan amount
+sub_grade,0.02403056486616913,LendingClub sub-grade
+addr_state,0.023400384240166647,state
+installment,0.021386593507714196,monthly instalment
+emp_length,0.020281939992363853,employment length
+initial_list_status,0.01868656029863623,listing status
+total_acc,0.01648866043878345,total credit lines
+revol_util,0.013366771617584802,revolving credit utilisation
+purpose,0.013018986339331578,loan purpose
+verification_status,0.012489697577353855,income verification
+mths_since_last_major_derog,0.00511926991937856,mths since last major derog
+mths_since_last_record,0.0045305430185565545,mths since last record
+mths_since_last_delinq,0.004246151211654383,months since last delinquency
+zip_code,0.001672581087035369,zip code
+pub_rec_bankruptcies,0.0013828724686029172,pub rec bankruptcies
+pub_rec,0.0008390187826547218,public records
+delinq_2yrs,0.0007566083680614113,recent delinquencies
+collections_12_mths_ex_med,0.000432524045441418,collections 12 mths ex med
+application_type,0.0,application type

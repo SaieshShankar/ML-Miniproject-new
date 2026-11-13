@@ -1,0 +1,11 @@
+Run summary: 59,500 training, 10,500 validation and 30,000 test loans; 18.6% of loans defaulted.
+
+Classification: the best model (LightGBM (tuned)) reaches a test ROC-AUC of 0.720. It catches 45% of defaulting loans; when it flags a loan, 38% actually default, about 2.0x the overall rate.
+
+Return prediction: the best regressor (CatBoost (tuned)) has a test R2 of 0.032, so it explains only a small share of the variation in returns; its value is in ranking loans, not exact forecasts.
+
+Strategy: investing in loans with predicted return >= 0.048 selects 2.3% of test loans (692) and earned 4.6% a year (95% CI 3.3% to 5.7%) versus 0.0% for the average loan. On validation loans the same rule earned 5.0%.
+
+Main drivers of predicted default risk (SHAP): interest rate, loan term, LendingClub grade, debt-to-income ratio, home ownership.
+
+Caveat: SHAP shows what the model relies on, not what causes default; returns are equal-weighted averages of per-loan annualised returns, not a portfolio return.
