@@ -1,5 +1,25 @@
 # LendingClub Loan Default & Profitability Prediction
 
+**Applied ML · credit-risk modelling · SHAP explainability**
+
+This is the most complete published LendingClub variant in my repositories, with Optuna tuning, SHAP explanations, saved evaluation outputs, and a Streamlit demo. Earlier variants: [baseline](https://github.com/SaieshShankar/lendingclub-default-prediction) and [tuning extension](https://github.com/SaieshShankar/ML-Miniproject).
+
+## Saved run highlights
+
+These figures come from the [committed run summary](results/summary.txt) and [model metadata](models/meta.json); they have not been rerun as part of this documentation update.
+
+| Measure | Saved result |
+| --- | --- |
+| Train / validation / test loans | 59,500 / 10,500 / 30,000 |
+| Best classifier | Tuned LightGBM; test ROC-AUC 0.720 |
+| Best return regressor | Tuned CatBoost; test R² 0.032 |
+| Historical selection rule | 692 test loans selected, or 2.3% |
+| Selected-loan mean annualised return | About 4.6%; bootstrap 95% interval about 3.3%–5.7% |
+
+Return figures are equal-weighted averages of per-loan annualised returns, rather than realised portfolio returns. SHAP describes model dependence, rather than causation.
+
+![ROC curves from the saved run](results/roc_curves.png)
+
 UE24CS352A – Machine Learning · Mini-Project
 
 Credit risk is the central concern of any peer-to-peer (P2P) lending investor. This project builds
@@ -11,11 +31,10 @@ loans are worth funding*:
 | **Classification** | Will this loan be *fully paid* or *default / charge off*? | Logistic Regression, Neural Network (MLP), Random Forest, Gradient Boosting, **LightGBM, CatBoost** (default + Optuna-tuned) |
 | **Regression** | What *net annualised return (NAR)* will this loan earn? | Linear, Ridge, Neural Network (MLP), Random Forest (depth 4/8/10), Gradient Boosting, **LightGBM, CatBoost** (default + tuned) |
 | **Explainability** | Which loan details drive the result, in plain English? | SHAP (grouped per loan field) + generated text explanations |
-| **Loan-selection strategy** | Which loans should I invest in? | Invest in every loan whose predicted NAR ≥ threshold *M* (tuned on train, evaluated on test) |
+| **Loan-selection strategy** | Which loans should I invest in? | Invest in every loan whose predicted NAR ≥ threshold *M* (tuned on validation, evaluated on test) |
 
 The approach follows *Li & Han, "LendingClub Loan Default and Profitability Prediction"* (Stanford).
 
-**Team:** `<Name 1 – SRN>`, `<Name 2 – SRN>` · **Section:** `<section>` · **Problem #:** `<serial no.>`
 
 ---
 
@@ -46,7 +65,8 @@ The approach follows *Li & Han, "LendingClub Loan Default and Profitability Pred
 ## Setup
 
 ```bash
-git clone <your-repo-url> && cd <repo>
+git clone https://github.com/SaieshShankar/ML-Miniproject-new.git
+cd ML-Miniproject-new
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
@@ -142,7 +162,7 @@ entered are treated as missing and imputed exactly as during training.
 | Random Forest regressor (depth 10) | test MSE / R² | 0.036 / 0.315 |
 | Strategy (*M* = 0.132) | realised return / loans selected | ≈ 15 % / 1.76 % |
 
-Add **your own** numbers from `results/` here after running on the real dataset.
+The project's saved run is summarised above. The table in this section reports reference-paper numbers, not this implementation's results.
 
 ## Improvements over the reference report
 
@@ -182,7 +202,7 @@ claim to beat those figures; we claim a reproducible, leakage-free, properly val
   oversampling, because the sigmoid network trained on imbalanced data collapsed to one class.
 - **Sub-sampling** (100k loans by default) keeps run-time reasonable on a laptop; use `--sample-size 0` for all data.
 - Strategy return is the *equal-weighted mean* NAR of selected loans (each loan assumed to receive the same $ amount).
-- Limitations: random (not time-based) split; threshold tuned on training data; no macro-economic features.
+- Limitations: random (not time-based) split; no macro-economic features; historical evaluation rather than a live investment backtest.
   See "Future work" in the report (test on 2016-2018 loans, add declined loans, NLP on loan descriptions).
 
 ## References
